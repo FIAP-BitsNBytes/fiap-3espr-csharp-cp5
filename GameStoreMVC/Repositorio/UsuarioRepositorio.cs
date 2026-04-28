@@ -55,5 +55,31 @@ namespace GameStoreMVC.Repositorio
         }
 
 
+        public bool CriarUsuario(string email, string senha)
+        {
+            using (var conn = new MySqlConnection(_connectionString))
+            {
+                conn.Open();
+
+                var checkSql = "SELECT COUNT(*) FROM Usuarios WHERE Email = @email";
+                var checkCmd = new MySqlCommand(checkSql, conn);
+                checkCmd.Parameters.AddWithValue("@email", email);
+                var count = Convert.ToInt32(checkCmd.ExecuteScalar());
+                if (count > 0)
+                    return false;
+
+                string senhaHash = BCrypt.Net.BCrypt.HashPassword(senha);
+
+                var sql = "INSERT INTO Usuarios (Email, Senha, Cargo) VALUES (@email, @senha, @cargo)";
+                var cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@email", email);
+                cmd.Parameters.AddWithValue("@senha", senhaHash);
+                cmd.Parameters.AddWithValue("@cargo", "usuario");
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+        }
+
+
     }
 }

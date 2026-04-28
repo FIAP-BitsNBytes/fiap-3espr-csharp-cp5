@@ -5,7 +5,6 @@ namespace GameStoreMVC.Interfaces
     public interface IUsuarioRepositorio
     {
         Usuario ValidarLogin(string email, string senha);
-
-     
+        bool CriarUsuario(string email, string senha);
     }
 }
