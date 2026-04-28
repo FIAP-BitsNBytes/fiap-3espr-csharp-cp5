@@ -18,8 +18,8 @@ namespace GameStoreMVC.Controllers
 
         public IActionResult Index()
         {
-            
-            return View();
+            var games = _gameRepositorio.ObterTodos();
+            return View(games);
         }
 
     
