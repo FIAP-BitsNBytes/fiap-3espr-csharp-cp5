@@ -48,6 +48,27 @@ namespace GameStoreMVC.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult CriarConta() => View();
+
+        [HttpPost]
+        public IActionResult CriarConta(CriarContaViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            bool criado = _usuarioRepositorio.CriarUsuario(model.Email, model.Senha);
+
+            if (!criado)
+            {
+                ViewBag.Erro = "Este e-mail já está cadastrado.";
+                return View(model);
+            }
+
+            TempData["Sucesso"] = "Conta criada com sucesso! Faça login para continuar.";
+            return RedirectToAction("Login");
+        }
+
        
         public async Task<IActionResult> Logout()
         {

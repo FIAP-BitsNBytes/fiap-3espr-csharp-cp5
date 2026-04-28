@@ -29,6 +29,13 @@
                        style="background-color: #f8f9fa;" />
             </div>
 
+            @if (TempData["Sucesso"] != null)
+            {
+                <div class="alert alert-success py-2 px-3 small border-0 shadow-sm" role="alert">
+                    <i class="bi bi-check-circle-fill me-2"></i>@TempData["Sucesso"]
+                </div>
+            }
+
             @if (ViewBag.Erro != null)
             {
                 <div class="alert alert-danger py-2 px-3 small border-0 shadow-sm" role="alert">
