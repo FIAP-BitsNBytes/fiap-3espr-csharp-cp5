@@ -45,7 +45,7 @@ namespace GameStoreMVC.Repositorio
                             {
                                 Id = (int)reader["Id"],
                                 Email = reader["Email"].ToString()!,
-                                Cargo = reader["Cargo"].ToString()!
+                                Senha = reader["Senha"].ToString()!
                             };
                         }
                     }
