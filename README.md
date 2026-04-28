@@ -3,6 +3,16 @@
 
 <br/>
 
+## Integrantes
+
+
+- Gabriel Mediotti Marques - **RM 552632**
+- Gustavo Bezerra Assumção - **RM 553076**
+- Jó Sales - **RM 552679**
+- Miguel Garcez de Carvalho - **RM 553768**
+- Vinicius Souza e Silva - **RM 552781**
+
+
 ## Sobre o Projeto
 
 O GameStore é um projeto criado com a intenção do gerenciamento de catalogo de jogos online. Com funcionalidades de criação de usuários, autenticação e controle de um acervo de jogos. Utilizado o padrão de arquitetura MVC (Model-View-Controller).
@@ -17,12 +27,14 @@ O GameStore é um projeto criado com a intenção do gerenciamento de catalogo d
 ## Estrutura do Projeto
 
 GameStore/
+````text
 ├── Controllers/       # Controladores da aplicação (ex: GameController)
 ├── Models/            # Modelos de dados e ViewModels
 ├── Views/             # Interface do usuário (Páginas Web Razor)
 ├── Repositorio/       # Regras de persistência e acesso a dados
 ├── Interfaces/        # Contratos para os repositórios
 └── wwwroot/           # Arquivos estáticos (CSS, JS, Imagens)
+````
 
 ##  Como Executar o Projeto
 
