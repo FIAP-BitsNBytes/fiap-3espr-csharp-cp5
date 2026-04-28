@@ -57,26 +57,37 @@ namespace GameStoreMVC.Repositorio
 
         public bool CriarUsuario(string email, string senha)
         {
+            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(senha))
+                return false;
+
             using (var conn = new MySqlConnection(_connectionString))
             {
                 conn.Open();
+                using (var transaction = conn.BeginTransaction())
+                {
+                    var checkSql = "SELECT COUNT(*) FROM Usuarios WHERE Email = @email";
+                    using (var checkCmd = new MySqlCommand(checkSql, conn, transaction))
+                    {
+                        checkCmd.Parameters.AddWithValue("@email", email);
+                        var count = Convert.ToInt32(checkCmd.ExecuteScalar());
+                        if (count > 0)
+                            return false;
+                    }
 
-                var checkSql = "SELECT COUNT(*) FROM Usuarios WHERE Email = @email";
-                var checkCmd = new MySqlCommand(checkSql, conn);
-                checkCmd.Parameters.AddWithValue("@email", email);
-                var count = Convert.ToInt32(checkCmd.ExecuteScalar());
-                if (count > 0)
-                    return false;
+                    string senhaHash = BCrypt.Net.BCrypt.HashPassword(senha);
 
-                string senhaHash = BCrypt.Net.BCrypt.HashPassword(senha);
+                    var sql = "INSERT INTO Usuarios (Email, Senha, Cargo) VALUES (@email, @senha, @cargo)";
+                    using (var cmd = new MySqlCommand(sql, conn, transaction))
+                    {
+                        cmd.Parameters.AddWithValue("@email", email);
+                        cmd.Parameters.AddWithValue("@senha", senhaHash);
+                        cmd.Parameters.AddWithValue("@cargo", "usuario");
+                        cmd.ExecuteNonQuery();
+                    }
 
-                var sql = "INSERT INTO Usuarios (Email, Senha, Cargo) VALUES (@email, @senha, @cargo)";
-                var cmd = new MySqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@email", email);
-                cmd.Parameters.AddWithValue("@senha", senhaHash);
-                cmd.Parameters.AddWithValue("@cargo", "usuario");
-                cmd.ExecuteNonQuery();
-                return true;
+                    transaction.Commit();
+                    return true;
+                }
             }
         }
 
