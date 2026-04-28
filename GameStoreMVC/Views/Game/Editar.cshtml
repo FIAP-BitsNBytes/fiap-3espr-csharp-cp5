@@ -1,12 +1,13 @@
-﻿@model GameStoreMVC.Models.Game
+@model GameStoreMVC.Models.Game
 
 @{
-    ViewData["Title"] = "Cadastrar Game";
+    ViewData["Title"] = "Editar Game";
 }
 
-<h1>Cadastrar Game</h1>
+<h1>Editar Game</h1>
 
-<form asp-action="Criar" method="post">
+<form asp-action="Editar" method="post">
+    <input type="hidden" asp-for="Id" />
     <div class="mb-3">
         <label asp-for="Nome" class="form-label"></label>
         <input asp-for="Nome" class="form-control" />

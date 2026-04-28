@@ -1,0 +1,28 @@
+@model GameStoreMVC.Models.Game
+
+@{
+    ViewData["Title"] = "Excluir Game";
+}
+
+<h1>Excluir Game</h1>
+
+<div class="alert alert-warning">
+    <p>Confirma a exclusão do game abaixo?</p>
+</div>
+
+<dl class="row">
+    <dt class="col-sm-3">Nome</dt>
+    <dd class="col-sm-9">@Model.Nome</dd>
+    <dt class="col-sm-3">Gênero</dt>
+    <dd class="col-sm-9">@Model.Genero</dd>
+    <dt class="col-sm-3">Preço</dt>
+    <dd class="col-sm-9">@Model.Preco.ToString("C")</dd>
+    <dt class="col-sm-3">Lançamento</dt>
+    <dd class="col-sm-9">@Model.DataLancamento.ToString("dd/MM/yyyy")</dd>
+</dl>
+
+<form asp-action="ExcluirConfirmado" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Excluir</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>
