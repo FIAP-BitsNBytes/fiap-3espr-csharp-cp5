@@ -1,1 +1,38 @@
-﻿
+﻿@model IEnumerable<GameStoreMVC.Models.Game>
+
+@{
+    ViewData["Title"] = "Games";
+}
+
+<h1>Games</h1>
+
+<p>
+    <a asp-action="Criar" class="btn btn-primary">Cadastrar</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Gênero</th>
+            <th>Preço</th>
+            <th>Lançamento</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var game in Model)
+    {
+        <tr>
+            <td>@game.Nome</td>
+            <td>@game.Genero</td>
+            <td>@game.Preco.ToString("C")</td>
+            <td>@game.DataLancamento.ToString("dd/MM/yyyy")</td>
+            <td class="text-end">
+                <a asp-action="Editar" asp-route-id="@game.Id" class="btn btn-sm btn-warning">Editar</a>
+                <a asp-action="Excluir" asp-route-id="@game.Id" class="btn btn-sm btn-danger">Excluir</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
