@@ -2,10 +2,11 @@
 
 using GameStoreMVC.Interfaces;
 using GameStoreMVC.Models;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GameStoreMVC.Controllers
 {
+    [Authorize]
     public class GameController : Controller
     {
         private readonly IGameRepositorio _repositorio;
