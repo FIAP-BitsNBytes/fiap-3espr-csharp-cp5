@@ -44,8 +44,10 @@ namespace GameStoreMVC.Repositorio
                             return new Usuario
                             {
                                 Id = (int)reader["Id"],
+                                Nome = reader["Nome"].ToString()!,
                                 Email = reader["Email"].ToString()!,
-                                Senha = reader["Senha"].ToString()!
+                                Senha = reader["Senha"].ToString()!,
+                                Cargo = reader["Cargo"].ToString()
                             };
                         }
                     }
@@ -55,9 +57,9 @@ namespace GameStoreMVC.Repositorio
         }
 
 
-        public bool CriarUsuario(string email, string senha)
+        public bool CriarUsuario(string nome, string email, string senha)
         {
-            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(senha))
+            if (string.IsNullOrWhiteSpace(nome) || string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(senha))
                 return false;
 
             using (var conn = new MySqlConnection(_connectionString))
@@ -76,9 +78,10 @@ namespace GameStoreMVC.Repositorio
 
                     string senhaHash = BCrypt.Net.BCrypt.HashPassword(senha);
 
-                    var sql = "INSERT INTO Usuarios (Email, Senha, Cargo) VALUES (@email, @senha, @cargo)";
+                    var sql = "INSERT INTO Usuarios (Nome, Email, Senha, Cargo) VALUES (@nome, @email, @senha, @cargo)";
                     using (var cmd = new MySqlCommand(sql, conn, transaction))
                     {
+                        cmd.Parameters.AddWithValue("@nome", nome);
                         cmd.Parameters.AddWithValue("@email", email);
                         cmd.Parameters.AddWithValue("@senha", senhaHash);
                         cmd.Parameters.AddWithValue("@cargo", "usuario");

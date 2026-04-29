@@ -25,12 +25,11 @@ namespace GameStoreMVC.Controllers
 
             if (usuario != null)
             {
-                // Para resolver o erro CS1503, usamos o nome completo da classe Claim
-                // Isso evita que o VS tente usar 'System.IO.BinaryReader' por engano.
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, usuario.Email),
-                    new Claim(ClaimTypes.Role, usuario.Cargo),
+                    new Claim(ClaimTypes.Name, usuario.Nome),
+                    new Claim(ClaimTypes.Email, usuario.Email),
+                    new Claim(ClaimTypes.Role, usuario.Cargo ?? "usuario"),
                     new Claim("UsuarioId", usuario.Id.ToString())
                 };
 
@@ -57,11 +56,11 @@ namespace GameStoreMVC.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            bool criado = _usuarioRepositorio.CriarUsuario(model.Email, model.Senha);
+            bool criado = _usuarioRepositorio.CriarUsuario(model.Nome, model.Email, model.Senha);
 
             if (!criado)
             {
-                ViewBag.Erro = "Este e-mail já está cadastrado.";
+                ViewBag.Erro = "Este e-mail já está cadastrado ou ocorreu um erro.";
                 return View(model);
             }
 
