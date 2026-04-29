@@ -6,8 +6,10 @@
 
 <h1>Cadastrar Game</h1>
 
-<form asp-action="Criar" method="post">
-    <div class="mb-3">
+<div class="row">
+    <div class="col-12 col-md-6 col-lg-4">
+        <form asp-action="Criar" method="post">
+            <div class="mb-3">
         <label asp-for="Nome" class="form-label"></label>
         <input asp-for="Nome" class="form-control" />
         <span asp-validation-for="Nome" class="text-danger"></span>
@@ -28,8 +30,10 @@
         <span asp-validation-for="DataLancamento" class="text-danger"></span>
     </div>
     <button type="submit" class="btn btn-primary">Salvar</button>
-    <a asp-action="Index" class="btn btn-secondary">Voltar</a>
 </form>
+    </div>
+</div>
+    <a asp-action="Index" class="btn btn-secondary mt-3">Voltar</a>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

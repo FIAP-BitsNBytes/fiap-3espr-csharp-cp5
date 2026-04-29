@@ -1,4 +1,4 @@
-ï»¿@model IEnumerable<GameStoreMVC.Models.Game>
+@model IEnumerable<GameStoreMVC.Models.Game>
 @{
     ViewData["Title"] = " Games | Home";
 }
@@ -9,7 +9,7 @@
 
     <div class="container-fluid py-5 text-white">
         <h1 class="display-5 fw-bold">Domine o Jogo</h1>
-        <p class="col-md-8 fs-4 opacity-90">Os lanÃ§amentos mais esperados e as melhores ofertas em um sÃ³ lugar. Upgrade no seu setup comeÃ§a aqui.</p>
+        <p class="col-md-8 fs-4 opacity-90">Os lançamentos mais esperados e as melhores ofertas em um só lugar. Upgrade no seu setup começa aqui.</p>
         <button class="btn btn-success btn-lg px-5 shadow" type="button">Ver Ofertas</button>
     </div>
 </div>
@@ -17,7 +17,7 @@
 <div class="container mb-5">
     <div class="d-flex justify-content-center gap-3 flex-wrap">
         <span class="badge rounded-pill p-2 px-3 shadow-sm" style="background-color: var(--light-blue-bg); color: var(--primary-navy); border: 1px solid rgba(0,35,102,0.1);">RPG</span>
-        <span class="badge rounded-pill p-2 px-3 shadow-sm" style="background-color: var(--light-blue-bg); color: var(--primary-navy); border: 1px solid rgba(0,35,102,0.1);">AÃ§Ã£o</span>
+        <span class="badge rounded-pill p-2 px-3 shadow-sm" style="background-color: var(--light-blue-bg); color: var(--primary-navy); border: 1px solid rgba(0,35,102,0.1);">Ação</span>
         <span class="badge rounded-pill p-2 px-3 shadow-sm" style="background-color: var(--light-blue-bg); color: var(--primary-navy); border: 1px solid rgba(0,35,102,0.1);">Corrida</span>
         <span class="badge rounded-pill p-2 px-3 shadow-sm" style="background-color: var(--light-blue-bg); color: var(--primary-navy); border: 1px solid rgba(0,35,102,0.1);">Aventura</span>
     </div>
@@ -33,13 +33,13 @@
         {
             foreach (var game in Model)
             {
-                <div class="col-md-4 mb-4">
+                <div class="col-12 col-md-6 col-lg-4 mb-4">
                     <div class="card h-100 shadow-sm">
                         <div class="card-body">
                             <h5 class="card-title fw-bold">@game.Nome</h5>
                             <h6 class="card-subtitle mb-2 text-muted">@game.Genero</h6>
                             <p class="card-text fs-4 text-success fw-bold">@game.Preco.ToString("C")</p>
-                            <p class="card-text"><small class="text-muted">LanÃ§amento: @game.DataLancamento.ToShortDateString()</small></p>
+                            <p class="card-text"><small class="text-muted">Lançamento: @game.DataLancamento.ToShortDateString()</small></p>
                         </div>
                         <div class="card-footer bg-white border-top-0 d-grid">
                             <button class="btn btn-primary" type="button"><i class="bi bi-cart-plus"></i> Comprar</button>
