@@ -1,0 +1,24 @@
+
+CREATE DATABASE IF NOT EXISTS GameStoreDb;
+USE GameStoreDb;
+
+CREATE TABLE Games (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(150) NOT NULL,
+    Genero VARCHAR(100) NOT NULL,
+    Preco DECIMAL(10, 2) NOT NULL,
+    DataLancamento DATETIME NOT NULL
+);
+
+CREATE TABLE Usuarios (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(255) NOT NULL,
+    Email VARCHAR(255) NOT NULL UNIQUE,
+    Senha VARCHAR(255) NOT NULL,
+    Cargo VARCHAR(255) NOT NULL
+);
+
+INSERT INTO Games (Nome, Genero, Preco, DataLancamento) VALUES ('New Game', 'Adventure', '69.99', now())
+
+
+-
