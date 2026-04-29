@@ -26,6 +26,9 @@
                         @if (User.Identity != null && User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
+                                <span class="nav-link text-white">Olá, @User.Identity.Name!</span>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link text-white" asp-area="" asp-controller="Game" asp-action="Index">Admin (Games)</a>
                             </li>
                             <li class="nav-item">

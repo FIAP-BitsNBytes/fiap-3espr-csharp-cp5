@@ -16,6 +16,14 @@
             @Html.AntiForgeryToken()
 
             <div class="mb-3">
+                <label asp-for="Nome" class="form-label small fw-semibold" style="color: var(--primary-navy);">Nome</label>
+                <input asp-for="Nome" class="form-control form-control-sm border-secondary-subtle"
+                       type="text" placeholder="Seu nome"
+                       style="background-color: #f8f9fa;" />
+                <span asp-validation-for="Nome" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
                 <label asp-for="Email" class="form-label small fw-semibold" style="color: var(--primary-navy);">E-mail</label>
                 <input asp-for="Email" class="form-control form-control-sm border-secondary-subtle"
                        type="email" placeholder="nome@exemplo.com"
